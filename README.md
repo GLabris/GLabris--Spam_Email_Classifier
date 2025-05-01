@@ -25,6 +25,6 @@ In order to use this tool you need:
 This project will be updated and here are some features i have in mind:
 
 - Expand the dataset for better results
-- Add proper GUI
-- Work on the spam recal and f1-score
+- Add proper clear history functionality in the GUI
+- Work on the spam, recal and f1-score
 
