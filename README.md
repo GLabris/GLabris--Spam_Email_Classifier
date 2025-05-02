@@ -27,7 +27,7 @@ Here is how the app looks:
 
 ### 🔹 Optional Step: Check your email history or even clear it
 
-![](images/Screenshot_3.jpg)
+![](images/Screenshot_31.jpg)
 
 ## 📊 The Dataset
 
