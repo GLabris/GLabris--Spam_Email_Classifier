@@ -29,11 +29,20 @@ Here is how the app looks:
 
 ![](images/Screenshot_31.jpg)
 
+
+
 ## 📊 The Dataset
 
 The dataset that was used for the training of the model is a Kaggle dataset made by Ashfak Yeafi under the Apache 2.0 licesne.
 
 - Dataset source: [Spam email classification](https://www.kaggle.com/datasets/ashfakyeafi/spam-email-classification)
+
+
+## 📈 Model Performance
+
+### 🔹 Model Accuracy, Precision, Recall and F1-scores
+
+![](images/Screenshot_4.jpg)
 
 
 ## ⚙️ Requirements and usability
@@ -45,9 +54,12 @@ In order to use this tool you need:
 
 **WARNING**: Firstly run the "spam_classification.py" then test the model out
 
+
 ## 🎯 The goal of this project
 
 I started this project to get myself familiar with building a Machine Learning model and the all around stuff(preprocessing the data, stemming, vectorizing)
 and learn the basics of python GUI even though i don't know how usefull it's going to be for me. 
 I will probably not work on this project anymore, instead i plan on making something useful.
+
+
 
