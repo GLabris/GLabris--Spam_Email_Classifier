@@ -40,6 +40,8 @@ The dataset that was used for the training of the model is a Kaggle dataset made
 
 ## 📈 Model Performance
 
+---
+
 ### 🔹 Model Accuracy, Precision, Recall and F1-scores
 
 ![](images/Screenshot_4.jpg)
