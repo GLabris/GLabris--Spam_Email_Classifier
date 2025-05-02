@@ -2,7 +2,6 @@ import customtkinter
 import joblib
 import string
 import json
-import os
 import sys
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
@@ -92,14 +91,14 @@ def append_to_history(email,result):
 
 
 
-
-def clear_history(window):
+# Deletes everything inside the json file then everything inside the scroll_frame passed
+def clear_history(scroll_frame):
+    # Clear everything inside json file
     open(HISTORY_FILENAME, 'w').close()
 
-    global open_history_window
-    # Temporary fix
-    open_history_window = False
-    window.destroy()
+    # Clear all widgets inside the scroll_frame
+    for widget in scroll_frame.winfo_children():
+        widget.destroy()
 
 
 # Used to prevent the user from opening second history window
@@ -138,6 +137,7 @@ def view_history():
            label_text='Email History'
     )
     scroll_frame.pack(pady=25,padx=20)
+    history_window.scroll_frame = scroll_frame
 
     # If the file exists or the json file isn't empty the file is loaded, else the list with the data will be created
     try:
@@ -186,7 +186,7 @@ def view_history():
     # Clear history button that clears history lmao
     clear_history_button = customtkinter.CTkButton(history_window,
                     text='Clear History',
-                    command=lambda: clear_history(history_window),
+                    command=lambda: clear_history(scroll_frame),
                     fg_color='#AA00C4',
                     hover_color='#E430FF',
                     corner_radius=15,
