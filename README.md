@@ -20,11 +20,10 @@ In order to use this tool you need:
 - The following libraries: scikit-learn, pandas, numpy, nltk
 - Train the model by running the 'spam_classification.py' file in your system
 
-## Future of this project
+**WARNING**: Firstly run the "spam_classification.py" then test the model out
 
-This project will be updated and here are some features i have in mind:
+## The goal of this project
 
-- Expand the dataset for better results
-- Add proper clear history functionality in the GUI
-- Work on the spam, recal and f1-score
+I started this project to get myself familiar with building a Machine Learning model and the all around stuff(preprocessing the data, stemming, vectorizing)
+and learn the basics of python GUI even though i don't know how usefull it's going to be for me
 
