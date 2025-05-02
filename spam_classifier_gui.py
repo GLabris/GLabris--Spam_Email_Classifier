@@ -36,6 +36,7 @@ customtkinter.set_default_color_theme("blue")  # Themes: blue (default), dark-bl
 # General optimizations
 app = customtkinter.CTk()
 app.resizable(False,False)
+app.iconbitmap("spam_icon.ico")
 app.title('Spam Email Classification')
 app.geometry('650x400')
 
@@ -68,6 +69,14 @@ email_entry = customtkinter.CTkTextbox(email_frame,
 email_entry.pack(side='left')
 
 
+def disable_entry():
+    # While history windpw is open the user can't classify another email
+    enter_label.configure(text_color='#656565')
+    email_entry.configure(text_color='#656565', state='disabled')
+
+def enable_entry():
+    enter_label.configure(text_color='#FFFFFF')
+    email_entry.configure(text_color='#FFFFFF', state='normal')
 
 # Whenever an email is classified, this function
 # appends the email's content and result into a json file
@@ -107,6 +116,9 @@ open_history_window = False
 
 # A pop up window for the display of the history of emails
 def view_history():
+    # Disabling the entry to let the user understand that he can't classify an email
+    # while the he is viewing the history
+    disable_entry()
     # Get access to the global variable
     global open_history_window
 
@@ -120,12 +132,16 @@ def view_history():
     # General window optimizations
     history_window = customtkinter.CTkToplevel(app)
     history_window.title('Email History')
+    history_window.iconbitmap("spam_icon.ico")
     history_window.geometry('550x400')
     history_window.resizable(False, False)
 
     def on_close():
+        # Update open_history_window state before the window closes
         global open_history_window
         open_history_window = False
+        # Enable entry so the user will be able to classify an email
+        enable_entry()
         history_window.destroy()
 
     history_window.protocol("WM_DELETE_WINDOW", on_close)
@@ -198,6 +214,12 @@ def view_history():
 
 
 def classify_email():
+
+    global open_history_window
+    #If the history window is open, the user can't classify another email
+    if open_history_window:
+        return
+
     email = email_entry.get('0.0','end').strip()
     # If there is no text inside the Textbox a warning message is displayed
     if not email: # strip because there is apparently a \n  at the end
@@ -215,13 +237,12 @@ def classify_email():
             result_label.configure(text='This email is normal', text_color='#00FF00')
 
         append_to_history(email, prediction[0])
-        """In the next few lines, the state of the Textbox will be disabled and the color
+        """The state of the Textbox will be disabled and the color
           of the text inside the email_frame will be changed to something like gray,
           to give it a disabled-like look. Also the class_button text will 
           change to "Classify another Email". This happens because i want the user 
           to have a clear image of what he has to do in order to classify another email"""
-        enter_label.configure(text_color='#656565')
-        email_entry.configure(text_color='#656565', state='disabled')
+        disable_entry()
         """The class button text is changed to 'Classify Another Email' and the assigned 
           command to the button is changed to the classify_another_email function.
           This happens so the entry,label and button functionality go back to normal"""
@@ -229,8 +250,7 @@ def classify_email():
 
 # All the previous changes go back to normal
 def classify_another_email():
-    enter_label.configure(text_color='#FFFFFF')
-    email_entry.configure(text_color='#FFFFFF', state='normal')
+    enable_entry()
     email_entry.delete("0.0", "end")
     class_button.configure(text='Classify Email', command=classify_email)
     result_label.configure(text='')
@@ -245,7 +265,7 @@ class_button = customtkinter.CTkButton(app,
 )
 class_button.pack(pady=10)
 
-
+# Button to open up history window
 history_button = customtkinter.CTkButton(app,
     text='View History',
     command=view_history,
