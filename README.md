@@ -54,7 +54,13 @@ In order to use this tool you need:
 - The following libraries: scikit-learn, pandas, numpy, nltk
 - Train the model by running the 'spam_classification.py' file in your system
 
-**WARNING**: Firstly run the "spam_classification.py" then test the model out
+**WARNING**: Firstly run the "spam_classification.py" then test the model out.
+
+If you run into a "Can't find a usable init.tcl" bug,
+you have to  to copy two folders from tcl folder to the Lib folder tcl8.5 and tk8.5(version may be different).
+
+- [Bug Fix](https://stackoverflow.com/questions/29320039/trying-to-use-tkinter-throws-tcl-error-cant-find-a-usable-init-tcl)
+
 
 
 ## 🎯 The goal of this project
